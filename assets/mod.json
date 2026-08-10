@@ -1,0 +1,11 @@
+{
+    "name": "wave-info",
+    "displayName": "WaveInfo",
+    "author": "6aTaPeI9",
+    "description": "Displays wave information and enemy path/spawn overlays.",
+    "version": "1.0",
+    "main": "waveinfo.WaveInfo",
+    "minGameVersion": "159.7",
+    "dependencies": [],
+    "java": true
+}
