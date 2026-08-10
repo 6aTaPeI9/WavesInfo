@@ -1,0 +1,2 @@
+# WavesInfo
+mindustry QOL mod
