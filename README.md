@@ -9,12 +9,12 @@ In survival and campaign maps, it's often hard to plan defenses: you don't know 
 ## What it does
 
 - **Wave list** — a scrollable panel showing every upcoming wave. Units in each wave are grouped by movement type (Ground / Air / Naval / Legs) so you can immediately see what kind of threat is coming. Hover an icon for details: unit name, spawn count, shield amount and status effect.
+
+![til](https://github.com/6aTaPeI9/static-content/blob/main/WavesInfo_1.png)
+
 - **Enemy path overlays** — draws the real paths enemies will follow from their spawn points to your core, using the game's own pathfinding (flow fields). Each movement type has its own color and can be toggled independently:
-  - **Ground** (red) — walking units
-  - **Naval** (blue) — water units
-  - **Legs** (green) — mech/spider units
-  - **Hover** (orange) — hovering units
-  - **Flying** (purple) — flying units, drawn as straight lines from their actual spawn point off the map edge to their target
+
+![til](https://github.com/6aTaPeI9/static-content/blob/main/WavesInfo_2.png)
 
 ## Usage
 
