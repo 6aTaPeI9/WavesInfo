@@ -1,0 +1,51 @@
+apply plugin: "java"
+
+sourceSets.main.java.srcDirs = ["src"]
+
+ext{
+    mindustryVersion = "v159.7"
+    isWindows = System.getProperty("os.name").toLowerCase().contains("windows")
+    sdkRoot = System.getenv("ANDROID_HOME") ?: System.getenv("ANDROID_SDK_ROOT")
+}
+
+repositories{
+    mavenCentral()
+
+    ivy{
+        url = 'https://github.com/'
+        patternLayout{ artifact(
+            (mindustryVersion == "latest" ? '/[organisation]/[module]/releases/[revision]/download/dependencies.jar' :
+            mindustryVersion == "be" ? '/[organisation]/[module]/releases/download/master/[revision].jar' :
+            '/[organisation]/[module]/releases/download/[revision]/dependencies.jar'))
+        }
+        metadataSources{ artifact() }
+
+        content{
+            if(mindustryVersion == "be"){
+                includeVersion("Anuken", "MindustryBuilds", "latest")
+            }else{
+                includeVersion("Anuken", "Mindustry", mindustryVersion)
+            }
+        }
+    }
+}
+
+java{
+    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_17
+}
+
+dependencies{
+    compileOnly mindustryVersion == "be" ? "Anuken:MindustryBuilds:latest" : "Anuken:Mindustry:$mindustryVersion"
+}
+
+jar{
+    archiveFileName = "${project.name}Desktop.jar"
+    from{ configurations.runtimeClasspath.collect{ it.isDirectory() ? it : zipTree(it) } }
+    from(projectDir){ include "mod.json" }
+    from("assets/"){ include "**" }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
+}
